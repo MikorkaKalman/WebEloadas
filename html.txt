@@ -92,7 +92,7 @@
     </div>
     
     <footer>
-        <p>Készítette: [Neved] - Neptun kód: [Kód]</p>
+        <p>Készítette: [Hunyadi Krisztofer & Kirilla József] - Neptun kód: [L3O8X-FWN10Y]</p>
     </footer>
     
     <script src="script.js"></script>
