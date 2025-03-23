@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web-programozás-1 Előadás Házi feladat</title>
+    <link rel="stylesheet" href="szepike.css">
+    
+</head>
+<body>
+    <header>
+        <h1>Web-programozás-1 Előadás Házi feladat</h1>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html">Főoldal</a></li>
+            <li><a href="tabla.html" class="active">Táblázat</a></li>
+            <li><a href="html5.html">HTML5 API</a></li>
+            <li><a href="chart.html">ChartJS</a></li>
+            <li><a href="ajax.html">AJAX</a></li>
+            <li><a href="oojs.html">OOJS</a></li>
+        </ul>
+    </nav>
+    
+    <div class="content">
+        <h2>CRUD táblázat</h2>
+        <input type="text" id="search" placeholder="Keresés..." onkeyup="searchTable()">
+        <br><br>
+        <input type="text" id="col1" placeholder="Osztály" required>
+        <input type="text" id="col2" placeholder="Név" required>
+        <input type="number" id="col3" placeholder="Életkor" min="18" max="100" required>
+        <input type="text" id="col4" placeholder="Város" required>
+        <button onclick="addRow()">Hozzáadás</button>
+        
+        <table id="dataTable">
+            <thead>
+                <tr>
+                    <th onclick="sortTable(0)">Osztály</th>
+                    <th onclick="sortTable(1)">Név</th>
+                    <th onclick="sortTable(2)">Életkor</th>
+                    <th onclick="sortTable(3)">Város</th>
+                    <th>Műveletek</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>A</td><td>Kiss Péter</td><td>20</td><td>Budapest</td><td><button onclick="deleteRow(this)">Törlés</button><button onclick="editRow(this)">Szerkesztés</button></td>
+                </tr>
+                <tr>
+                    <td>B</td><td>Nagy Anna</td><td>22</td><td>Debrecen</td><td><button onclick="deleteRow(this)">Törlés</button><button onclick="editRow(this)">Szerkesztés</button></td>
+                </tr>
+                <tr>
+                    <td>C</td><td>Szabó László</td><td>19</td><td>Szeged</td><td><button onclick="deleteRow(this)">Törlés</button><button onclick="editRow(this)">Szerkesztés</button></td>
+                </tr>
+                <tr>
+                    <td>D</td><td>Varga Mária</td><td>21</td><td>Pécs</td><td><button onclick="deleteRow(this)">Törlés</button><button onclick="editRow(this)">Szerkesztés</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <footer>
+        <p>Készítette: [Neved] - Neptun kód: [Kód]</p>
+    </footer>
+    
+    <script>
+        function addRow() {
+            let col1 = document.getElementById("col1").value;
+            let col2 = document.getElementById("col2").value;
+            let col3 = document.getElementById("col3").value;
+            let col4 = document.getElementById("col4").value;
+            
+            // Validáció
+            if (!col1 || !col2 || !col3 || !col4 || col3 < 18 || col3 > 100) {
+                alert("Minden mező kitöltése kötelező, és az életkor 18 és 100 között kell legyen!");
+                return;
+            }
+            
+            let table = document.getElementById("dataTable").getElementsByTagName('tbody')[0];
+            let newRow = table.insertRow();
+            newRow.innerHTML = `<td>${col1}</td><td>${col2}</td><td>${col3}</td><td>${col4}</td><td><button onclick="deleteRow(this)">Törlés</button><button onclick="editRow(this)">Szerkesztés</button></td>`;
+        }
+
+        function deleteRow(button) {
+            let row = button.parentNode.parentNode;
+            row.parentNode.removeChild(row);
+        }
+
+        function editRow(button) {
+            let row = button.parentNode.parentNode;
+            let cells = row.getElementsByTagName("td");
+            
+            document.getElementById("col1").value = cells[0].innerText;
+            document.getElementById("col2").value = cells[1].innerText;
+            document.getElementById("col3").value = cells[2].innerText;
+            document.getElementById("col4").value = cells[3].innerText;
+            
+            deleteRow(button);
+        }
+        
+        function sortTable(n) {
+            let table = document.getElementById("dataTable");
+            let rows = Array.from(table.rows).slice(1);
+            let ascending = table.dataset.sortOrder !== 'asc';
+            
+            rows.sort((a, b) => {
+                let valA = a.cells[n].innerText;
+                let valB = b.cells[n].innerText;
+                return ascending ? valA.localeCompare(valB, undefined, { numeric: true }) : valB.localeCompare(valA, undefined, { numeric: true });
+            });
+            
+            rows.forEach(row => table.appendChild(row));
+            table.dataset.sortOrder = ascending ? 'asc' : 'desc';
+        }
+        
+        function searchTable() {
+            let input = document.getElementById("search").value.toLowerCase();
+            let rows = document.querySelectorAll("#dataTable tbody tr");
+            
+            rows.forEach(row => {
+                let text = row.innerText.toLowerCase();
+                row.style.display = text.includes(input) ? "" : "none";
+            });
+        }
+    </script>
+</body>
+</html>
