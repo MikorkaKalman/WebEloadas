@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML5 API Példák</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1em;
+        }
+        nav {
+            background-color: #444;
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        nav ul li {
+            padding: 14px 20px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 14px 20px;
+            display: block;
+        }
+        nav ul li a:hover, .active {
+            background-color: #666;
+        }
+        .content {
+            padding: 20px;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1em;
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>HTML5 API Példák</h1>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#web-storage" class="active">Web Storage</a></li>
+            <li><a href="#web-workers">Web Workers</a></li>
+            <li><a href="#server-sent-events">Server-Sent Events</a></li>
+            <li><a href="#geolocation">Geolocation API</a></li>
+            <li><a href="#drag-drop">Drag and Drop API</a></li>
+            <li><a href="#canvas">Canvas</a></li>
+            <li><a href="#svg">SVG</a></li>
+        </ul>
+    </nav>
+    
+    <div class="content">
+        <!-- Web Storage Example -->
+        <div id="web-storage">
+            <h2>Web Storage</h2>
+            <p>Web Storage segítségével tárolhatunk adatokat a böngészőben.</p>
+            <button onclick="saveData()">Adat Mentése</button>
+            <p id="storage-result"></p>
+        </div>
+
+        <!-- Web Workers Example -->
+        <div id="web-workers">
+            <h2>Web Workers</h2>
+            <button onclick="startWorker()">Web Worker Indítása</button>
+            <p id="worker-result"></p>
+        </div>
+
+        <!-- Server-Sent Events Example -->
+        <div id="server-sent-events">
+            <h2>Server-Sent Events</h2>
+            <p id="event-result">Üzenetek várakozása...</p>
+        </div>
+
+        <!-- Geolocation API Example -->
+        <div id="geolocation">
+            <h2>Geolocation API</h2>
+            <button onclick="getLocation()">Helymeghatározás</button>
+            <p id="location-result"></p>
+        </div>
+
+        <!-- Drag and Drop Example -->
+        <div id="drag-drop">
+            <h2>Drag and Drop API</h2>
+            <div id="drag-box" style="width: 100px; height: 100px; background: lightblue;" draggable="true" ondragstart="dragStart(event)">
+                Húzd át!
+            </div>
+            <div id="drop-zone" style="width: 200px; height: 200px; background: lightgreen; margin-top: 20px;" ondrop="drop(event)" ondragover="allowDrop(event)">
+                Ide dobj!
+            </div>
+        </div>
+
+        <!-- Canvas Example -->
+        <div id="canvas">
+            <h2>Canvas</h2>
+            <canvas id="myCanvas" width="400" height="400" style="border: 1px solid black;"></canvas>
+            <button onclick="drawCanvas()">Rajzolás</button>
+        </div>
+
+        <!-- SVG Example -->
+        <div id="svg">
+            <h2>SVG</h2>
+            <svg width="400" height="180">
+                <circle cx="200" cy="90" r="40" stroke="black" stroke-width="3" fill="red" />
+            </svg>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Készítette: [Neved]</p>
+    </footer>
+
+    <script>
+        // Web Storage
+        function saveData() {
+            localStorage.setItem("myData", "Ez egy mentett adat.");
+            document.getElementById("storage-result").innerText = "Mentett adat: " + localStorage.getItem("myData");
+        }
+
+        // Web Workers
+        let worker;
+        function startWorker() {
+            if (typeof Worker !== "undefined") {
+                if (typeof worker == "undefined") {
+                    worker = new Worker("worker.js");  // worker.js létrehozása szükséges
+                    worker.onmessage = function (event) {
+                        document.getElementById("worker-result").innerText = "Web Worker üzenet: " + event.data;
+                    };
+                }
+            } else {
+                document.getElementById("worker-result").innerText = "A Web Workers nem támogatott a böngészőben.";
+            }
+        }
+
+        // Server-Sent Events (Példa a Server oldali eseményekre)
+        if (typeof(EventSource) !== "undefined") {
+            var source = new EventSource("events.php");  // PHP fájl szükséges az eseményekhez
+            source.onmessage = function(event) {
+                document.getElementById("event-result").innerText = "Üzenet: " + event.data;
+            };
+        } else {
+            document.getElementById("event-result").innerText = "A Server-Sent Events nem támogatott a böngészőben.";
+        }
+
+        // Geolocation API
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                document.getElementById("location-result").innerText = "A helymeghatározás nem támogatott a böngészőben.";
+            }
+        }
+
+        function showPosition(position) {
+            document.getElementById("location-result").innerText = "Szélesség: " + position.coords.latitude + " | Hosszúság: " + position.coords.longitude;
+        }
+
+        // Drag and Drop API
+        function allowDrop(event) {
+            event.preventDefault();
+        }
+
+        function dragStart(event) {
+            event.dataTransfer.setData("text", event.target.id);
+        }
+
+        function drop(event) {
+            event.preventDefault();
+            var data = event.dataTransfer.getData("text");
+            event.target.appendChild(document.getElementById(data));
+        }
+
+        // Canvas
+        function drawCanvas() {
+            var canvas = document.getElementById("myCanvas");
+            var ctx = canvas.getContext("2d");
+            ctx.fillStyle = "green";
+            ctx.fillRect(50, 50, 150, 150);
+        }
+    </script>
+</body>
+</html>
