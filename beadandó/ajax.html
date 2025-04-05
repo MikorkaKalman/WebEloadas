@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web-programozás-1 Előadás Házi feladat</title>
+    <link rel="stylesheet" href="szepike.css">
+    <script src="ajax.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Web-programozás-1 Előadás Házi feladat</h1>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html">Főoldal</a></li>
+            <li><a href="tabla.html">Táblázat</a></li>
+            <li><a href="Html5.html">HTML5 API</a></li>
+            <li><a href="chart.html">ChartJS</a></li>
+            <li><a href="ajax.html"  class="active">AJAX</a></li>
+            <li><a href="oojs.html">OOJS</a></li>
+            <li><a href="Belepes.html">Kilépés</a></li>
+        </ul>
+    </nav>
+    
+
+    <div id = 'readDiv'></div>
+    <div id = 'createDiv'>
+      <h1>Create</h1>
+      Név (required, max 30): <input id="name1" type="text"></input><br>
+      Életkor (required, max 3): <input id="age1" type="number"></input><br>
+      Nem (required, max 30): <input id="gender1" type="text"></input><br>
+      <button type="submit" onclick="create();">Create</button><br>
+      <div id = 'createResult'></div>
+    </div> 
+    <div id = 'updateDiv'>
+      <h1>Update</h1>
+      Sorszám (required): <input id="idUpd" type="text"></input><br> 
+      <button type="submit" onclick="getDataForId();">getDataForId</button><br>
+      Név (required, max 30): <input id="name1" type="text"></input><br>
+      Életkor (required, max 3): <input id="age1" type="number"></input><br>
+      Nem (required, max 30): <input id="gender1" type="text"></input><br>
+      <button type="submit" onclick="update();">Update</button><br>
+      <div id = 'updateResult'></div>      
+    </div> 
+    <div id = 'deleteDiv'>
+      <h1>Delete</h1>
+      Sorszám (required): <input id="idDel" type="text"></input><br> 
+      <button type="submit" onclick="deleteF();">Delete</button><br>
+      <div id = 'deleteResult'></div>      
+    </div> 
+    
+    <footer>
+        <p>Készítette: [Hunyadi Krisztofer & Kirilla József] - Neptun kód: [LE3O8X-FWN10Y]</p>
+    </footer>
+    
+  
+</body>
+</html>

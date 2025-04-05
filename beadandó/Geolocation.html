@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geolocation API</title>
+    <link rel="stylesheet" href="szepike.css">
+</head>
+<body>
+    <header>
+        <h1>Geolocation API</h1>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html" >Főoldal</a></li>
+            <li><a href="tabla.html">Táblázat</a></li>
+            <li><a href="Html5.html" class="active">HTML5 API</a></li>
+            <li><a href="chart.html">ChartJS</a></li>
+            <li><a href="ajax.html">AJAX</a></li>
+            <li><a href="oojs.html">OOJS</a></li>
+            <li><a href="Belepes.html">Kilépés</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <aside>
+            <h3>Oldalsáv</h3>
+            <p>Itt lehetnek további információk.</p>
+        </aside>
+        
+        <div class="content">
+            <h2>Geolocation</h2>
+            <p>
+                <body onload="myFunction()">
+                    <p>Click the button to get your coordinates.</p>
+                    <button onclick="getLocation()">Try It</button>
+                    <p id="demo"></p>
+                    <script>	
+                        var x = document.getElementById("demo");
+                        function getLocation()  {
+                            if (navigator.geolocation)
+                                navigator.geolocation.getCurrentPosition(showPosition);
+                            else 
+                                x.innerHTML = "Geolocation is not supported by this browser.";
+                        }
+                        function showPosition(position)  {
+                            x.innerHTML = "Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;	
+                            var newContent = '<iframe src = "https://maps.google.com/maps?q=' + position.coords.latitude + ',' + position.coords.longitude + '&hl=es;z=14&amp;output=embed" width="600" height="450"></iframe>';
+                            var contentHolder = document.getElementById('content-holder');
+                            contentHolder.innerHTML = newContent;
+                        }
+                    </script>
+                    <p id="content-holder">Google maps: Waiting for GPS coordinates ...</p>
+            </p>
+        </div>
+    </div>
+    
+    
+
+    <footer>
+        <p>Készítette: [Hunyadi Krisztofer & Kirilla József] - Neptun kód: [LE3O8X-FWN10Y]</p>
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html>

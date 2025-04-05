@@ -1,0 +1,219 @@
+#menu {
+    display: none;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    
+}
+header {
+    background-color: #1a1a1a;  /* Mély szürke */
+    color: white;
+    text-align: center;
+    padding: 1px;
+    font-weight: bold;  /* Erősebb betűtípus */
+}
+
+nav {
+    background-color: #333;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);  /* Árnyék */
+}
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;  /* Középre igazítás */
+}
+
+nav ul li {
+    padding: 5px 20px;
+    margin: 0 5px;
+    border-radius: 5px;  /* Lekerekített sarkok */
+}
+
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 14px 20px;
+    display: block;
+}
+
+nav ul li a:hover, .active {
+    background-color: #666;
+}
+
+.container {
+    display: flex;
+    flex: 1;
+}
+
+aside {
+    width: 5%;
+    background-color: #f4f4f4;
+    padding: 15px;
+}
+.content {
+    flex: 1;
+    padding: 20px;
+}
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1px;
+    margin-top: auto;
+}
+.employee-form {
+    border-style: solid;
+    /* margin-bottom: 10px; */
+    /* margin-left: 10px; */
+    padding: 10px;
+    /* width: 50%; */
+    margin: auto;
+    width: 50%;
+    /* border: 3px solid green; */
+    /* padding: 10px; */
+}
+.employees-table {
+    border-style: solid;
+    /* margin-bottom: 10px; */
+    /* margin-left: 10px; */
+    padding: 20px;
+    /* width: 50%; */
+    margin: auto;
+    width: 70%;
+    /* border: 3px solid green; */
+    /* padding: 10px; */
+}
+body > table{
+    width: 80%;
+}
+table{
+    border-collapse: collapse;
+}
+table.list{
+    width:100%;
+}
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+tr:nth-child(even),table.list thead>tr {
+    background-color: #dddddd;
+}
+input[type=text], input[type=number] {
+    width: 100%;
+    padding: 8px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+input[type=submit] {
+    width: 30%;
+    background-color: black;
+    color: white;
+    padding: 10px 18px;
+    /* margin: 0px 0; */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+form div.form-action-buttons{
+    text-align: right;
+}
+a{
+    cursor: pointer;
+    text-decoration: underline;
+    color: #0000ee;
+    margin-right: 4px;
+}
+label.validation-error{
+    color:   red;
+    margin-left: 5px;
+}
+.hide{
+    display:none;
+}
+.belep {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border: 2px solid #ddd;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+.belep h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.belep p {
+    margin: 10px 0 5px;
+    color: #555;
+    font-weight: bold;
+}
+
+.belep input[type="text"],
+.belep input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    transition: 0.3s ease;
+}
+
+.belep input[type="text"]:focus,
+.belep input[type="password"]:focus {
+    border-color: #6c63ff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(108, 99, 255, 0.5);
+}
+
+.belep input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #6c63ff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s ease;
+}
+
+.belep input[type="submit"]:hover {
+    background-color: #574bff;
+}
+/* Az oszlopfejlécek */
+th.sortable {
+    cursor: pointer; 
+    background-color: #f9f9f9; 
+    padding: 10px;
+    text-align: left;
+    transition: background-color 0.3s ease; 
+}
+
+th.sortable:hover {
+    background-color: #e0e0e0; 
+}
+
+th.sortable:active {
+    background-color: #ccc;
+}
+

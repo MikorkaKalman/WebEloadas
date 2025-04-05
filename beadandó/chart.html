@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web-programozás-1 Előadás Házi feladat</title>
+    <link rel="stylesheet" href="szepike.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 50%;
+            margin: 20px auto;
+        }
+        td, th {
+            border: 1px solid black;
+            text-align: center;
+            padding: 10px;
+        }
+        .content h2 {
+            text-align: center;
+        }
+        .chart-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Web-programozás-1 Előadás Házi feladat</h1>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html">Főoldal</a></li>
+            <li><a href="tabla.html">Táblázat</a></li>
+            <li><a href="Html5.html">HTML5 API</a></li>
+            <li><a href="index.html" class="active">ChartJS</a></li>
+            <li><a href="ajax.html">AJAX</a></li>
+            <li><a href="oojs.html">OOJS</a></li>
+            <li><a href="Belepes.html">Kilépés</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <aside>
+            <h3>Oldalsáv</h3>
+            <p>Itt lehetnek további információk.</p>
+        </aside>
+        
+        <div class="content">
+            <h2>ChartJS menü</h2>
+            <table id="dataTable">
+                <tbody>
+                </tbody>
+            </table>
+            <div class="chart-container">
+                <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Készítette: [Hunyadi Krisztofer & Kirilla József] - Neptun kód: [LE3O8X-FWN10Y]</p>
+    </footer>
+    
+    <script>
+        let tableData = [
+            [10, 20, 10, 40, 50],
+            [15, 25, 35, 45, 55],
+            [50, 10, 90, 79, 23],
+            [25, 35, 45, 55, 65],
+            [100, 50, 10, 60, 60]
+        ];
+        let table = document.getElementById("dataTable").querySelector("tbody");
+        
+        tableData.forEach(row => {
+            let tr = document.createElement("tr");
+            row.forEach(cell => {
+                let td = document.createElement("td");
+                td.innerText = cell;
+                tr.appendChild(td);
+            });
+            tr.onclick = function() { updateChart(row); };
+            table.appendChild(tr);
+        });
+
+        let chart;
+        function updateChart(data) {
+            if (chart) chart.destroy();
+            chart = new Chart("myChart", {
+                type: "line",
+                data: {
+                    labels: [1, 2, 3, 4, 5],
+                    datasets: [{
+                        data: data,
+                        borderColor: "red",
+                        fill: false
+                    }]
+                },
+                options: {
+                    legend: { display: false }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

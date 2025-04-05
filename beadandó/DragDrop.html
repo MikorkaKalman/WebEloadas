@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag And Drop</title>
+    <link rel="stylesheet" href="szepike.css">
+</head>
+<body>
+    <header>
+        <h1>Drag And Drop</h1>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html" >Főoldal</a></li>
+            <li><a href="tabla.html">Táblázat</a></li>
+            <li><a href="Html5.html" class="active">HTML5 API</a></li>
+            <li><a href="chart.html">ChartJS</a></li>
+            <li><a href="ajax.html">AJAX</a></li>
+            <li><a href="oojs.html">OOJS</a></li>
+            <li><a href="Belepes.html">Kilépés</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <aside>
+            <h3>Oldalsáv</h3>
+            <p>Itt lehetnek további információk.</p>
+        </aside>
+        
+        <div class="content">
+            <h2>Drag And Drop</h2>
+            <p>
+                <style>
+                    #div1, #div2 {float:left; width:400px; height:300px; margin:10px;padding:10px;border:1px solid #aaaaaa;}
+                </style>
+                <script>
+                    function allowDrop(ev) {
+                        ev.preventDefault();
+                    }
+            
+                    function drag(ev) {
+                        ev.dataTransfer.setData("text", ev.target.id);
+                    }
+            
+                    function drop(ev) {
+                        ev.preventDefault();
+                        var data = ev.dataTransfer.getData("text");
+                        ev.target.appendChild(document.getElementById(data));
+                    }
+                </script>
+            </head>
+            <body>
+                <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <img src="nje.png" draggable="true" ondragstart="drag(event)" id="drag1" width="400" height="300">
+                </div>
+                <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            </p>
+        </div>
+    </div>
+    
+    
+
+    <footer>
+        <p>Készítette: [Hunyadi Krisztofer & Kirilla József] - Neptun kód: [LE3O8X-FWN10Y]</p>
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html>

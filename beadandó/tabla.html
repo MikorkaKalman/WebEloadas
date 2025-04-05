@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web-programozás-1 Előadás Házi feladat</title>
+    <link rel="stylesheet" href="szepike.css">
+</head>
+<body>
+    <header>
+        <h1>Web-programozás-1 Előadás Házi feladat</h1>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html">Főoldal</a></li>
+            <li><a href="tabla.html" class="active">Táblázat</a></li>
+            <li><a href="Html5.html">HTML5 API</a></li>
+            <li><a href="chart.html">ChartJS</a></li>
+            <li><a href="ajax.html">AJAX</a></li>
+            <li><a href="oojs.html">OOJS</a></li>
+            <li><a href="Belepes.html">Kilépés</a></li>
+        </ul>
+    </nav>
+	<div class="employees-table">
+        <table class="list" id="employeeList">
+            <thead>
+                <tr>
+                    <th class="sortable" data-column="fullName">Név<input type="text" id="filterFullName" oninput="filterTable('fullName')"></th>
+                    <th class="sortable" data-column="age">Kor<input type="number" id="filterAge" oninput="filterTable('age')"></th>
+                    <th class="sortable" data-column="gender">Nem<input type="text" id="filterGender" oninput="filterTable('gender')"></th>
+                    <th class="sortable" data-column="city">Város<input type="text" id="filterCity" oninput="filterTable('city')"></th>
+                    <th>Opció</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+    <div class="employee-form">
+        <form onsubmit="event.preventDefault(); onFormSubmit();">
+            <div>
+                <label>Név*</label><label class="validation-error hide" id="fullNameValidationError">This field is required.</label>
+                <input type="text" name="fullName" id="fullName" required minlength="3" maxlength="50">
+            </div>
+            <div>
+                <label>Kor*</label>
+                <input type="number" name="age" id="age" required min="18" max="100">
+            </div>
+            <div>
+                <label>Nem*</label>
+                <input type="text" name="gender" id="gender" required minlength="3" maxlength="10">
+            </div>
+            <div>
+                <label>Város*</label>
+                <input type="text" name="city" id="city" required minlength="3" maxlength="50">
+            </div>
+            <div class="form-action-buttons">
+                <input type="submit" value="Kész">
+            </div>
+        </form>
+    </div>
+
+    <br/>
+
+    <footer>
+        <p>Készítette: [Hunyadi Krisztofer & Kirilla József] - Neptun kód: [LE3O8X-FWN10Y]</p>
+    </footer>
+    
+
+    <script src="tabla.js"></script>
+</body>
+</html>
